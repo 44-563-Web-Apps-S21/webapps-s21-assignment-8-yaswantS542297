@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>fetch</title>
+</head>
+<body>
+    <h2>Yaswant Lakkaraju</h2>
+    <input type="number" id="a">
+    <input type="number" id="b">
+    <button onclick="remote()">compute</button>
+    <div id="result">Result will be displayed here</div>
+</body>
+<script>
+    function remote(){
+         x = document.getElementById("a").value
+         y = document.getElementById("b").value
+        fetch(`http://127.0.0.1:3001/?x=${x}&y=${y}`).then(
+            resp => {
+                return resp.text()
+            }).then(
+                text => {
+                    console.log(text)
+                    document.getElementById("result").innerHTML = text
+                }).catch(
+                    error => {
+                        console.log(error)
+                    });
+    }
+</script>
+</html>
